@@ -1,0 +1,430 @@
+
+pip install tensorflow==1.15.5  #installing the old version of tensorflow
+Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/
+Collecting tensorflow==1.15.5
+  Downloading tensorflow-1.15.5-cp37-cp37m-manylinux2010_x86_64.whl (110.5 MB)
+     |████████████████████████████████| 110.5 MB 1.3 kB/s 
+Requirement already satisfied: protobuf>=3.6.1 in /usr/local/lib/python3.7/dist-packages (from tensorflow==1.15.5) (3.17.3)
+Requirement already satisfied: astor>=0.6.0 in /usr/local/lib/python3.7/dist-packages (from tensorflow==1.15.5) (0.8.1)
+Requirement already satisfied: termcolor>=1.1.0 in /usr/local/lib/python3.7/dist-packages (from tensorflow==1.15.5) (2.0.1)
+Requirement already satisfied: wheel>=0.26 in /usr/local/lib/python3.7/dist-packages (from tensorflow==1.15.5) (0.37.1)
+Requirement already satisfied: wrapt>=1.11.1 in /usr/local/lib/python3.7/dist-packages (from tensorflow==1.15.5) (1.14.1)
+Collecting tensorboard<1.16.0,>=1.15.0
+  Downloading tensorboard-1.15.0-py3-none-any.whl (3.8 MB)
+     |████████████████████████████████| 3.8 MB 40.8 MB/s 
+Requirement already satisfied: opt-einsum>=2.3.2 in /usr/local/lib/python3.7/dist-packages (from tensorflow==1.15.5) (3.3.0)
+Collecting h5py<=2.10.0
+  Downloading h5py-2.10.0-cp37-cp37m-manylinux1_x86_64.whl (2.9 MB)
+     |████████████████████████████████| 2.9 MB 41.5 MB/s 
+Requirement already satisfied: google-pasta>=0.1.6 in /usr/local/lib/python3.7/dist-packages (from tensorflow==1.15.5) (0.2.0)
+Collecting keras-applications>=1.0.8
+  Downloading Keras_Applications-1.0.8-py3-none-any.whl (50 kB)
+     |████████████████████████████████| 50 kB 6.2 MB/s 
+Collecting numpy<1.19.0,>=1.16.0
+  Downloading numpy-1.18.5-cp37-cp37m-manylinux1_x86_64.whl (20.1 MB)
+     |████████████████████████████████| 20.1 MB 1.2 MB/s 
+Collecting tensorflow-estimator==1.15.1
+  Downloading tensorflow_estimator-1.15.1-py2.py3-none-any.whl (503 kB)
+     |████████████████████████████████| 503 kB 39.5 MB/s 
+Requirement already satisfied: keras-preprocessing>=1.0.5 in /usr/local/lib/python3.7/dist-packages (from tensorflow==1.15.5) (1.1.2)
+Requirement already satisfied: absl-py>=0.7.0 in /usr/local/lib/python3.7/dist-packages (from tensorflow==1.15.5) (1.2.0)
+Requirement already satisfied: grpcio>=1.8.6 in /usr/local/lib/python3.7/dist-packages (from tensorflow==1.15.5) (1.49.1)
+Collecting gast==0.2.2
+  Downloading gast-0.2.2.tar.gz (10 kB)
+Requirement already satisfied: six>=1.10.0 in /usr/local/lib/python3.7/dist-packages (from tensorflow==1.15.5) (1.15.0)
+Requirement already satisfied: setuptools>=41.0.0 in /usr/local/lib/python3.7/dist-packages (from tensorboard<1.16.0,>=1.15.0->tensorflow==1.15.5) (57.4.0)
+Requirement already satisfied: werkzeug>=0.11.15 in /usr/local/lib/python3.7/dist-packages (from tensorboard<1.16.0,>=1.15.0->tensorflow==1.15.5) (1.0.1)
+Requirement already satisfied: markdown>=2.6.8 in /usr/local/lib/python3.7/dist-packages (from tensorboard<1.16.0,>=1.15.0->tensorflow==1.15.5) (3.4.1)
+Requirement already satisfied: importlib-metadata>=4.4 in /usr/local/lib/python3.7/dist-packages (from markdown>=2.6.8->tensorboard<1.16.0,>=1.15.0->tensorflow==1.15.5) (5.0.0)
+Requirement already satisfied: zipp>=0.5 in /usr/local/lib/python3.7/dist-packages (from importlib-metadata>=4.4->markdown>=2.6.8->tensorboard<1.16.0,>=1.15.0->tensorflow==1.15.5) (3.9.0)
+Requirement already satisfied: typing-extensions>=3.6.4 in /usr/local/lib/python3.7/dist-packages (from importlib-metadata>=4.4->markdown>=2.6.8->tensorboard<1.16.0,>=1.15.0->tensorflow==1.15.5) (4.1.1)
+Building wheels for collected packages: gast
+  Building wheel for gast (setup.py) ... done
+  Created wheel for gast: filename=gast-0.2.2-py3-none-any.whl size=7554 sha256=d168b9d72d30a99c4da4cbd1cc06872122f13d815b3ec0cbf6bd3a869a6be55e
+  Stored in directory: /root/.cache/pip/wheels/21/7f/02/420f32a803f7d0967b48dd823da3f558c5166991bfd204eef3
+Successfully built gast
+Installing collected packages: numpy, h5py, tensorflow-estimator, tensorboard, keras-applications, gast, tensorflow
+  Attempting uninstall: numpy
+    Found existing installation: numpy 1.21.6
+    Uninstalling numpy-1.21.6:
+      Successfully uninstalled numpy-1.21.6
+  Attempting uninstall: h5py
+    Found existing installation: h5py 3.1.0
+    Uninstalling h5py-3.1.0:
+      Successfully uninstalled h5py-3.1.0
+  Attempting uninstall: tensorflow-estimator
+    Found existing installation: tensorflow-estimator 2.9.0
+    Uninstalling tensorflow-estimator-2.9.0:
+      Successfully uninstalled tensorflow-estimator-2.9.0
+  Attempting uninstall: tensorboard
+    Found existing installation: tensorboard 2.9.1
+    Uninstalling tensorboard-2.9.1:
+      Successfully uninstalled tensorboard-2.9.1
+  Attempting uninstall: gast
+    Found existing installation: gast 0.4.0
+    Uninstalling gast-0.4.0:
+      Successfully uninstalled gast-0.4.0
+  Attempting uninstall: tensorflow
+    Found existing installation: tensorflow 2.9.2
+    Uninstalling tensorflow-2.9.2:
+      Successfully uninstalled tensorflow-2.9.2
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+xarray-einstats 0.2.2 requires numpy>=1.21, but you have numpy 1.18.5 which is incompatible.
+tensorflow-probability 0.16.0 requires gast>=0.3.2, but you have gast 0.2.2 which is incompatible.
+tables 3.7.0 requires numpy>=1.19.0, but you have numpy 1.18.5 which is incompatible.
+plotnine 0.8.0 requires numpy>=1.19.0, but you have numpy 1.18.5 which is incompatible.
+kapre 0.3.7 requires tensorflow>=2.0.0, but you have tensorflow 1.15.5 which is incompatible.
+jaxlib 0.3.20+cuda11.cudnn805 requires numpy>=1.20, but you have numpy 1.18.5 which is incompatible.
+jax 0.3.21 requires numpy>=1.20, but you have numpy 1.18.5 which is incompatible.
+cmdstanpy 1.0.7 requires numpy>=1.21, but you have numpy 1.18.5 which is incompatible.
+Successfully installed gast-0.2.2 h5py-2.10.0 keras-applications-1.0.8 numpy-1.18.5 tensorboard-1.15.0 tensorflow-1.15.5 tensorflow-estimator-1.15.1
+import numpy as np 
+import tensorflow as tf
+import matplotlib.pyplot as plt #importing matplotlib libery to plot the graph
+learning_parameter = 0.01
+epochs = 300
+#enabling the learning parameter(the step  to learn)
+# enabling  the epochs (The number the model is trained again again)
+sample_points = 50 #sample points numbers
+x_train = np.linspace(0,30,sample_points) #driving a linespace with a certain degree and making it x_train
+y_train = 6*x_train + 7*np.random.randn(sample_points) #enabling y_train randomly
+# Noisy dataset
+plt.plot(x_train, y_train, 'o')
+# Noise free dataset 
+plt.plot(x_train, 6*x_train)
+plt.show()
+
+Y = tf.placeholder(tf.float32)
+X = tf.placeholder(tf.float32)
+# installing the placeholders
+W = tf.Variable(np.random.randn(), name = 'weights')
+B = tf.Variable(np.random.randn(), name = 'bias')
+The next step is defining the parameters of the model. Making the model and defining the cost function with the model. And the optimizer is needed to decrease the loss.
+
+#Create the model for regression
+prediction = W*X + B
+
+# Cost function
+cost_iteration = tf.reduce_sum((prediction-Y)**2)/(2*sample_points)
+
+#Define the optimizer
+optimizer = tf.train.GradientDescentOptimizer(learning_parameter).minimize(cost_iteration)
+
+# Initialize the variables
+init = tf.global_variables_initializer()
+WARNING:tensorflow:From /usr/local/lib/python3.7/dist-packages/tensorflow_core/python/ops/math_grad.py:1375: where (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+Running the session. And working with the wights of the model. Then preparing for the training. It lasts according to the number of epochs. Plotting the target label and the classes around it. It is shown with the linear graph.
+
+with tf.Session() as sess:
+  sess.run(init)
+  for epoch in range(epochs):
+    for x, y in zip(x_train, y_train):
+      sess.run(optimizer, feed_dict = {X : x, Y : y})
+    if not epoch%40:
+      W1 = sess.run(W)
+      B1 = sess.run(B)
+      cost_iter = sess.run(cost_iteration, feed_dict = {X : x, Y : y})
+      print('Epochs %f Cost %f Weight %f Bias %f' %(epoch, cost_iter, W1, B1))
+  Weight = sess.run(W)
+  Bias = sess.run(B)
+
+  plt.plot(x_train, y_train, 'o')
+  plt.plot(x_train,Weight*x_train+Bias)
+  plt.show()
+Epochs 0.000000 Cost 6.972046 Weight 5.621857 Bias 0.960381
+Epochs 40.000000 Cost 4.067107 Weight 5.827357 Bias 1.032938
+Epochs 80.000000 Cost 4.070412 Weight 5.825312 Bias 1.086099
+Epochs 120.000000 Cost 4.073399 Weight 5.823462 Bias 1.134238
+Epochs 160.000000 Cost 4.076103 Weight 5.821785 Bias 1.177828
+Epochs 200.000000 Cost 4.078556 Weight 5.820267 Bias 1.217302
+Epochs 240.000000 Cost 4.080781 Weight 5.818892 Bias 1.253043
+Epochs 280.000000 Cost 4.082791 Weight 5.817647 Bias 1.285411
+
+# Create the model for regression
+with tf.name_scope("Model") as scope:
+  prediction = W*X + B
+
+# Add summary to study behaviour of weights and biases with epochs
+weight_histogram = tf.summary.histogram("Weights", W)
+bias_histogram = tf.summary.histogram("Bias", B)
+
+# Cost function
+with tf.name_scope("Cost_function") as scope:
+  cost_iteration = tf.reduce_sum((prediction-Y)**2)/(2*sample_points)
+
+# Record the scalar summary of the cost function
+cost_summary = tf.summary.scalar("Cost", cost_iteration)
+#Define the optimizer
+with tf.name_scope("Training") as scope:
+  optimizer = tf.train.GradientDescentOptimizer(learning_parameter).minimize(cost_iteration)
+
+# Initialize the variables
+init = tf.global_variables_initializer()
+
+#Merge all the summaries into a single operator
+merged_summary = tf.summary.merge_all()
+# Define the tensorflow session
+with tf.Session() as sess:
+  sess.run(init)
+  writer = tf.summary.FileWriter('./log', sess.graph)
+  for epoch in range(epochs):
+    for x, y in zip(x_train, y_train):
+      sess.run(optimizer, feed_dict = {X : x, Y : y})
+
+      # Write logs for each epochs
+      summary_epochs = sess.run(merged_summary, feed_dict = {X : x, Y : y})
+      writer.add_summary(summary_epochs, epoch)
+    if not epoch%40:
+      W1 = sess.run(W)
+      B1 = sess.run(B)
+      cost_iter = sess.run(cost_iteration, feed_dict = {X : x, Y : y})
+      print('Epochs %f Cost %f Weight %f Bias %f' %(epoch, cost_iter, W1, B1))
+  Weight = sess.run(W)
+  Bias = sess.run(B)
+
+  plt.plot(x_train, y_train, 'o')
+  plt.plot(x_train,Weight*x_train+Bias)
+  plt.show()
+Epochs 0.000000 Cost 6.972046 Weight 5.621857 Bias 0.960381
+Epochs 40.000000 Cost 4.067107 Weight 5.827357 Bias 1.032938
+Epochs 80.000000 Cost 4.070412 Weight 5.825312 Bias 1.086099
+Epochs 120.000000 Cost 4.073399 Weight 5.823462 Bias 1.134238
+Epochs 160.000000 Cost 4.076103 Weight 5.821785 Bias 1.177828
+Epochs 200.000000 Cost 4.078556 Weight 5.820267 Bias 1.217302
+Epochs 240.000000 Cost 4.080781 Weight 5.818892 Bias 1.253043
+Epochs 280.000000 Cost 4.082791 Weight 5.817647 Bias 1.285411
+
+pip install tensorflow==1.15.5
+Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/
+Requirement already satisfied: tensorflow==1.15.5 in /usr/local/lib/python3.7/dist-packages (1.15.5)
+Requirement already satisfied: gast==0.2.2 in /usr/local/lib/python3.7/dist-packages (from tensorflow==1.15.5) (0.2.2)
+Requirement already satisfied: tensorflow-estimator==1.15.1 in /usr/local/lib/python3.7/dist-packages (from tensorflow==1.15.5) (1.15.1)
+Requirement already satisfied: google-pasta>=0.1.6 in /usr/local/lib/python3.7/dist-packages (from tensorflow==1.15.5) (0.2.0)
+Requirement already satisfied: keras-preprocessing>=1.0.5 in /usr/local/lib/python3.7/dist-packages (from tensorflow==1.15.5) (1.1.2)
+Requirement already satisfied: h5py<=2.10.0 in /usr/local/lib/python3.7/dist-packages (from tensorflow==1.15.5) (2.10.0)
+Requirement already satisfied: wheel>=0.26 in /usr/local/lib/python3.7/dist-packages (from tensorflow==1.15.5) (0.37.1)
+Requirement already satisfied: astor>=0.6.0 in /usr/local/lib/python3.7/dist-packages (from tensorflow==1.15.5) (0.8.1)
+Requirement already satisfied: opt-einsum>=2.3.2 in /usr/local/lib/python3.7/dist-packages (from tensorflow==1.15.5) (3.3.0)
+Requirement already satisfied: tensorboard<1.16.0,>=1.15.0 in /usr/local/lib/python3.7/dist-packages (from tensorflow==1.15.5) (1.15.0)
+Requirement already satisfied: protobuf>=3.6.1 in /usr/local/lib/python3.7/dist-packages (from tensorflow==1.15.5) (3.17.3)
+Requirement already satisfied: grpcio>=1.8.6 in /usr/local/lib/python3.7/dist-packages (from tensorflow==1.15.5) (1.49.1)
+Requirement already satisfied: termcolor>=1.1.0 in /usr/local/lib/python3.7/dist-packages (from tensorflow==1.15.5) (2.0.1)
+Requirement already satisfied: numpy<1.19.0,>=1.16.0 in /usr/local/lib/python3.7/dist-packages (from tensorflow==1.15.5) (1.18.5)
+Requirement already satisfied: keras-applications>=1.0.8 in /usr/local/lib/python3.7/dist-packages (from tensorflow==1.15.5) (1.0.8)
+Requirement already satisfied: six>=1.10.0 in /usr/local/lib/python3.7/dist-packages (from tensorflow==1.15.5) (1.15.0)
+Requirement already satisfied: absl-py>=0.7.0 in /usr/local/lib/python3.7/dist-packages (from tensorflow==1.15.5) (1.2.0)
+Requirement already satisfied: wrapt>=1.11.1 in /usr/local/lib/python3.7/dist-packages (from tensorflow==1.15.5) (1.14.1)
+Requirement already satisfied: setuptools>=41.0.0 in /usr/local/lib/python3.7/dist-packages (from tensorboard<1.16.0,>=1.15.0->tensorflow==1.15.5) (57.4.0)
+Requirement already satisfied: werkzeug>=0.11.15 in /usr/local/lib/python3.7/dist-packages (from tensorboard<1.16.0,>=1.15.0->tensorflow==1.15.5) (1.0.1)
+Requirement already satisfied: markdown>=2.6.8 in /usr/local/lib/python3.7/dist-packages (from tensorboard<1.16.0,>=1.15.0->tensorflow==1.15.5) (3.4.1)
+Requirement already satisfied: importlib-metadata>=4.4 in /usr/local/lib/python3.7/dist-packages (from markdown>=2.6.8->tensorboard<1.16.0,>=1.15.0->tensorflow==1.15.5) (5.0.0)
+Requirement already satisfied: zipp>=0.5 in /usr/local/lib/python3.7/dist-packages (from importlib-metadata>=4.4->markdown>=2.6.8->tensorboard<1.16.0,>=1.15.0->tensorflow==1.15.5) (3.9.0)
+Requirement already satisfied: typing-extensions>=3.6.4 in /usr/local/lib/python3.7/dist-packages (from importlib-metadata>=4.4->markdown>=2.6.8->tensorboard<1.16.0,>=1.15.0->tensorflow==1.15.5) (4.1.1)
+!wget https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-freebsd-amd64.tgz
+--2022-10-13 02:41:23--  https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-freebsd-amd64.tgz
+Resolving bin.equinox.io (bin.equinox.io)... 18.205.222.128, 54.161.241.46, 54.237.133.81, ...
+Connecting to bin.equinox.io (bin.equinox.io)|18.205.222.128|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 8380303 (8.0M) [application/octet-stream]
+Saving to: ‘ngrok-v3-stable-freebsd-amd64.tgz’
+
+ngrok-v3-stable-fre 100%[===================>]   7.99M  32.7MB/s    in 0.2s    
+
+2022-10-13 02:41:23 (32.7 MB/s) - ‘ngrok-v3-stable-freebsd-amd64.tgz’ saved [8380303/8380303]
+
+!unzip ngrok-v3-stable-linux-amd64.zip
+unzip:  cannot find or open ngrok-v3-stable-linux-amd64.zip, ngrok-v3-stable-linux-amd64.zip.zip or ngrok-v3-stable-linux-amd64.zip.ZIP.
+LOG_DIR = './log'
+get_ipython().system_raw(
+    'tensorboard --logdir {} --host 0.0.0.0 --port 6006 &'
+    .format(LOG_DIR)
+)
+get_ipython().system_raw('./ngrok http 6006 &')
+! curl -s http://localhost:4040/api/tunnels | python3 -c \
+    "import sys, json; print(json.load(sys.stdin)['tunnels'][0]['public_url'])"
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/usr/lib/python3.7/json/__init__.py", line 296, in load
+    parse_constant=parse_constant, object_pairs_hook=object_pairs_hook, **kw)
+  File "/usr/lib/python3.7/json/__init__.py", line 348, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python3.7/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python3.7/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+pip install tensorflow==1.15.5
+Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/
+Requirement already satisfied: tensorflow==1.15.5 in /usr/local/lib/python3.7/dist-packages (1.15.5)
+Requirement already satisfied: google-pasta>=0.1.6 in /usr/local/lib/python3.7/dist-packages (from tensorflow==1.15.5) (0.2.0)
+Requirement already satisfied: astor>=0.6.0 in /usr/local/lib/python3.7/dist-packages (from tensorflow==1.15.5) (0.8.1)
+Requirement already satisfied: termcolor>=1.1.0 in /usr/local/lib/python3.7/dist-packages (from tensorflow==1.15.5) (2.0.1)
+Requirement already satisfied: h5py<=2.10.0 in /usr/local/lib/python3.7/dist-packages (from tensorflow==1.15.5) (2.10.0)
+Requirement already satisfied: grpcio>=1.8.6 in /usr/local/lib/python3.7/dist-packages (from tensorflow==1.15.5) (1.49.1)
+Requirement already satisfied: keras-preprocessing>=1.0.5 in /usr/local/lib/python3.7/dist-packages (from tensorflow==1.15.5) (1.1.2)
+Requirement already satisfied: absl-py>=0.7.0 in /usr/local/lib/python3.7/dist-packages (from tensorflow==1.15.5) (1.2.0)
+Requirement already satisfied: six>=1.10.0 in /usr/local/lib/python3.7/dist-packages (from tensorflow==1.15.5) (1.15.0)
+Requirement already satisfied: wrapt>=1.11.1 in /usr/local/lib/python3.7/dist-packages (from tensorflow==1.15.5) (1.14.1)
+Requirement already satisfied: opt-einsum>=2.3.2 in /usr/local/lib/python3.7/dist-packages (from tensorflow==1.15.5) (3.3.0)
+Requirement already satisfied: tensorflow-estimator==1.15.1 in /usr/local/lib/python3.7/dist-packages (from tensorflow==1.15.5) (1.15.1)
+Requirement already satisfied: protobuf>=3.6.1 in /usr/local/lib/python3.7/dist-packages (from tensorflow==1.15.5) (3.17.3)
+Requirement already satisfied: tensorboard<1.16.0,>=1.15.0 in /usr/local/lib/python3.7/dist-packages (from tensorflow==1.15.5) (1.15.0)
+Requirement already satisfied: wheel>=0.26 in /usr/local/lib/python3.7/dist-packages (from tensorflow==1.15.5) (0.37.1)
+Requirement already satisfied: gast==0.2.2 in /usr/local/lib/python3.7/dist-packages (from tensorflow==1.15.5) (0.2.2)
+Requirement already satisfied: numpy<1.19.0,>=1.16.0 in /usr/local/lib/python3.7/dist-packages (from tensorflow==1.15.5) (1.18.5)
+Requirement already satisfied: keras-applications>=1.0.8 in /usr/local/lib/python3.7/dist-packages (from tensorflow==1.15.5) (1.0.8)
+Requirement already satisfied: markdown>=2.6.8 in /usr/local/lib/python3.7/dist-packages (from tensorboard<1.16.0,>=1.15.0->tensorflow==1.15.5) (3.4.1)
+Requirement already satisfied: setuptools>=41.0.0 in /usr/local/lib/python3.7/dist-packages (from tensorboard<1.16.0,>=1.15.0->tensorflow==1.15.5) (57.4.0)
+Requirement already satisfied: werkzeug>=0.11.15 in /usr/local/lib/python3.7/dist-packages (from tensorboard<1.16.0,>=1.15.0->tensorflow==1.15.5) (1.0.1)
+Requirement already satisfied: importlib-metadata>=4.4 in /usr/local/lib/python3.7/dist-packages (from markdown>=2.6.8->tensorboard<1.16.0,>=1.15.0->tensorflow==1.15.5) (5.0.0)
+Requirement already satisfied: typing-extensions>=3.6.4 in /usr/local/lib/python3.7/dist-packages (from importlib-metadata>=4.4->markdown>=2.6.8->tensorboard<1.16.0,>=1.15.0->tensorflow==1.15.5) (4.1.1)
+Requirement already satisfied: zipp>=0.5 in /usr/local/lib/python3.7/dist-packages (from importlib-metadata>=4.4->markdown>=2.6.8->tensorboard<1.16.0,>=1.15.0->tensorflow==1.15.5) (3.9.0)
+# Import the dependencies
+import cv2
+import matplotlib.pyplot as plt
+import numpy as np
+import tensorflow as tf
+from tensorflow.examples.tutorials.mnist import input_data
+mnist_data = input_data.read_data_sets("./data", one_hot = True)
+WARNING:tensorflow:From <ipython-input-20-4cf8105ac99b>:2: read_data_sets (from tensorflow.contrib.learn.python.learn.datasets.mnist) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use alternatives such as official/mnist/dataset.py from tensorflow/models.
+WARNING:tensorflow:From /usr/local/lib/python3.7/dist-packages/tensorflow_core/contrib/learn/python/learn/datasets/mnist.py:260: maybe_download (from tensorflow.contrib.learn.python.learn.datasets.base) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please write your own downloading logic.
+WARNING:tensorflow:From /usr/local/lib/python3.7/dist-packages/tensorflow_core/contrib/learn/python/learn/datasets/base.py:252: _internal_retry.<locals>.wrap.<locals>.wrapped_fn (from tensorflow.contrib.learn.python.learn.datasets.base) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use urllib or similar directly.
+WARNING:tensorflow:From /usr/local/lib/python3.7/dist-packages/tensorflow_core/contrib/learn/python/learn/datasets/mnist.py:262: extract_images (from tensorflow.contrib.learn.python.learn.datasets.mnist) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use tf.data to implement this functionality.
+Successfully downloaded train-images-idx3-ubyte.gz 9912422 bytes.
+Extracting ./data/train-images-idx3-ubyte.gz
+WARNING:tensorflow:From /usr/local/lib/python3.7/dist-packages/tensorflow_core/contrib/learn/python/learn/datasets/mnist.py:267: extract_labels (from tensorflow.contrib.learn.python.learn.datasets.mnist) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use tf.data to implement this functionality.
+WARNING:tensorflow:From /usr/local/lib/python3.7/dist-packages/tensorflow_core/contrib/learn/python/learn/datasets/mnist.py:110: dense_to_one_hot (from tensorflow.contrib.learn.python.learn.datasets.mnist) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use tf.one_hot on tensors.
+Successfully downloaded train-labels-idx1-ubyte.gz 28881 bytes.
+Extracting ./data/train-labels-idx1-ubyte.gz
+Successfully downloaded t10k-images-idx3-ubyte.gz 1648877 bytes.
+Extracting ./data/t10k-images-idx3-ubyte.gz
+WARNING:tensorflow:From /usr/local/lib/python3.7/dist-packages/tensorflow_core/contrib/learn/python/learn/datasets/mnist.py:290: DataSet.__init__ (from tensorflow.contrib.learn.python.learn.datasets.mnist) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use alternatives such as official/mnist/dataset.py from tensorflow/models.
+Successfully downloaded t10k-labels-idx1-ubyte.gz 4542 bytes.
+Extracting ./data/t10k-labels-idx1-ubyte.gz
+num_training = mnist_data.train.num_examples
+num_testing = mnist_data.test.num_examples
+num_validation = mnist_data.validation.num_examples
+print("MNIST Datasize: Training samples: {0}, Testing samples: {1}")
+MNIST Datasize: Training samples: {0}, Testing samples: {1}
+# Network parameters of Neural Network
+n_input = 784     # Input image of size 28 x 28
+n_hidden_1 = 512  # First hidden layer
+n_hidden_2 = 256  # Second hidden layer
+n_hidden_3 = 128  # Third hidden layer
+n_output = 10     # Output layer having (0-9) digits
+learning_rate = 1e-4
+epochs = 3000
+batch_size = 128
+keep_prob = tf.placeholder(tf.float32)
+# Building tensorflow graph
+
+X = tf.placeholder(tf.float32, [None, n_input])
+Y = tf.placeholder(tf.float32, [None, n_output])
+nn_weight = {"W1": tf.Variable(tf.truncated_normal([n_input, n_hidden_1], stddev = 0.1)),
+             "W2": tf.Variable(tf.truncated_normal([n_hidden_1, n_hidden_2], stddev = 0.1)),
+             "W3": tf.Variable(tf.truncated_normal([n_hidden_2, n_hidden_3], stddev = 0.1)),
+             "Wout":tf.Variable(tf.truncated_normal([n_hidden_3, n_output]))
+}
+
+nn_bias = { "B1": tf.Variable(tf.truncated_normal([n_hidden_1])),
+            "B2": tf.Variable(tf.truncated_normal([n_hidden_2])),
+            "B3": tf.Variable(tf.truncated_normal([n_hidden_3])),
+            "B4": tf.Variable(tf.truncated_normal([n_output])),  
+           }
+nn_layer_1 = tf.add(tf.matmul(X, nn_weight["W1"]),nn_bias["B1"])
+nn_layer_2 = tf.add(tf.matmul(nn_layer_1, nn_weight["W2"]),nn_bias["B2"])
+nn_layer_3 = tf.add(tf.matmul(nn_layer_2, nn_weight["W3"]),nn_bias["B3"])
+layer_drop = tf.nn.dropout(nn_layer_3, keep_prob)
+output_layer = tf.add(tf.matmul(layer_drop, nn_weight["Wout"]), nn_bias["B4"])
+WARNING:tensorflow:From <ipython-input-26-7479a4162d01>:4: calling dropout (from tensorflow.python.ops.nn_ops) with keep_prob is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `rate` instead of `keep_prob`. Rate should be set to `rate = 1 - keep_prob`.
+# Define the loss
+computed_loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits_v2(logits = output_layer, labels = Y))
+
+# Define the optimizer
+optimizer = tf.train.GradientDescentOptimizer(learning_rate = learning_rate).minimize(computed_loss)
+
+#Define prediction
+prediction_out = tf.equal(tf.argmax(output_layer,1), tf.argmax(Y,1))
+
+# Define accuracy of the model
+nn_accuracy = tf.reduce_mean(tf.cast(prediction_out, tf.float32))
+
+# Initialize all the variables
+init = tf.global_variables_initializer()
+
+saver = tf.train.Saver()
+# Executing the computational graph
+
+with tf.Session() as sess:
+  sess.run(init)
+  for i in range(epochs):
+
+    mini_batch_x, mini_batch_y = mnist_data.train.next_batch(batch_size)
+    #print(mini_batch_x[0:1,:].shape)
+    mini_batch_val_x, mini_batch_val_y = mnist_data.validation.next_batch(batch_size)
+
+    sess.run(optimizer, feed_dict = {X : mini_batch_x, Y : mini_batch_y, keep_prob:1})
+    
+    if i%100 == 0:
+      mini_batch_loss, mini_batch_accuracy = sess.run([computed_loss, nn_accuracy], feed_dict = {X: mini_batch_x, Y: mini_batch_y, keep_prob:1})
+
+      mini_batch_val_loss, mini_batch_val_accuracy = sess.run([computed_loss, nn_accuracy], feed_dict = {X: mini_batch_x, Y: mini_batch_y, keep_prob:1})
+
+      print("Iterations : {0} , Train_loss = {1}, Train_Accuracy {2}, Val_loss {3}, Val_accuracy {4}".format(i, mini_batch_loss, mini_batch_accuracy, mini_batch_val_loss, mini_batch_val_accuracy))
+
+  print("Optimization Finished")
+  test_accuracy = sess.run(nn_accuracy, feed_dict = {X:mnist_data.test.images, Y:mnist_data.test.labels, keep_prob:1.0})
+  print("Testing accuracy is {0}".format(test_accuracy))
+
+  saver_path = saver.save(sess, "./model/my_model.ckpt")
+Iterations : 0 , Train_loss = 46.9437255859375, Train_Accuracy 0.1484375, Val_loss 46.9437255859375, Val_accuracy 0.1484375
+Iterations : 100 , Train_loss = 7.847781181335449, Train_Accuracy 0.4921875, Val_loss 7.847781181335449, Val_accuracy 0.4921875
+Iterations : 200 , Train_loss = 5.3988237380981445, Train_Accuracy 0.5546875, Val_loss 5.3988237380981445, Val_accuracy 0.5546875
+Iterations : 300 , Train_loss = 2.803743839263916, Train_Accuracy 0.7734375, Val_loss 2.803743839263916, Val_accuracy 0.7734375
+Iterations : 400 , Train_loss = 3.3350205421447754, Train_Accuracy 0.796875, Val_loss 3.3350205421447754, Val_accuracy 0.796875
+Iterations : 500 , Train_loss = 2.1478919982910156, Train_Accuracy 0.7734375, Val_loss 2.1478919982910156, Val_accuracy 0.7734375
+Iterations : 600 , Train_loss = 3.0935606956481934, Train_Accuracy 0.78125, Val_loss 3.0935606956481934, Val_accuracy 0.78125
+Iterations : 700 , Train_loss = 2.8059797286987305, Train_Accuracy 0.734375, Val_loss 2.8059797286987305, Val_accuracy 0.734375
+Iterations : 800 , Train_loss = 1.9882413148880005, Train_Accuracy 0.78125, Val_loss 1.9882413148880005, Val_accuracy 0.78125
+Iterations : 900 , Train_loss = 3.118232250213623, Train_Accuracy 0.734375, Val_loss 3.118232250213623, Val_accuracy 0.734375
+Iterations : 1000 , Train_loss = 1.8207893371582031, Train_Accuracy 0.8125, Val_loss 1.8207893371582031, Val_accuracy 0.8125
+Iterations : 1100 , Train_loss = 2.710427761077881, Train_Accuracy 0.7578125, Val_loss 2.710427761077881, Val_accuracy 0.7578125
+Iterations : 1200 , Train_loss = 1.2142524719238281, Train_Accuracy 0.875, Val_loss 1.2142524719238281, Val_accuracy 0.875
+Iterations : 1300 , Train_loss = 2.4466006755828857, Train_Accuracy 0.7265625, Val_loss 2.4466006755828857, Val_accuracy 0.7265625
+Iterations : 1400 , Train_loss = 1.6280627250671387, Train_Accuracy 0.8515625, Val_loss 1.6280627250671387, Val_accuracy 0.8515625
+Iterations : 1500 , Train_loss = 1.0153677463531494, Train_Accuracy 0.84375, Val_loss 1.0153677463531494, Val_accuracy 0.84375
+Iterations : 1600 , Train_loss = 1.3630967140197754, Train_Accuracy 0.8203125, Val_loss 1.3630967140197754, Val_accuracy 0.8203125
+Iterations : 1700 , Train_loss = 1.7969965934753418, Train_Accuracy 0.8359375, Val_loss 1.7969965934753418, Val_accuracy 0.8359375
+Iterations : 1800 , Train_loss = 2.5711092948913574, Train_Accuracy 0.78125, Val_loss 2.5711092948913574, Val_accuracy 0.78125
+Iterations : 1900 , Train_loss = 1.4020984172821045, Train_Accuracy 0.7890625, Val_loss 1.4020984172821045, Val_accuracy 0.7890625
+Iterations : 2000 , Train_loss = 1.8638814687728882, Train_Accuracy 0.8125, Val_loss 1.8638814687728882, Val_accuracy 0.8125
+Iterations : 2100 , Train_loss = 1.3205429315567017, Train_Accuracy 0.8671875, Val_loss 1.3205429315567017, Val_accuracy 0.8671875
+Iterations : 2200 , Train_loss = 1.1429755687713623, Train_Accuracy 0.8515625, Val_loss 1.1429755687713623, Val_accuracy 0.8515625
+Iterations : 2300 , Train_loss = 1.2642711400985718, Train_Accuracy 0.8359375, Val_loss 1.2642711400985718, Val_accuracy 0.8359375
+Iterations : 2400 , Train_loss = 0.8731716871261597, Train_Accuracy 0.8515625, Val_loss 0.8731716871261597, Val_accuracy 0.8515625
+Iterations : 2500 , Train_loss = 0.9114185571670532, Train_Accuracy 0.8984375, Val_loss 0.9114185571670532, Val_accuracy 0.8984375
+Iterations : 2600 , Train_loss = 1.9978389739990234, Train_Accuracy 0.7734375, Val_loss 1.9978389739990234, Val_accuracy 0.7734375
+Iterations : 2700 , Train_loss = 0.9934368133544922, Train_Accuracy 0.8515625, Val_loss 0.9934368133544922, Val_accuracy 0.8515625
+Iterations : 2800 , Train_loss = 1.3517051935195923, Train_Accuracy 0.859375, Val_loss 1.3517051935195923, Val_accuracy 0.859375
+Iterations : 2900 , Train_loss = 0.4077850580215454, Train_Accuracy 0.9296875, Val_loss 0.4077850580215454, Val_accuracy 0.9296875
+Optimization Finished
+Testing accuracy is 0.8515999913215637
+The overall of the code above is training a model by playing with the parameters of weights. The model was made by the back propogation. In other words by the Gradient Decent. The loss will decrease and it tries to reach the target variable. But there will be anyway a loss, so we will use the activation function to decrease the error. I tried to add explanations to each line except the professor's. So you can see explanations for each one. The accuracy was really good for train , about 92 and 85 for the test data. And the loss is around 0.4.
