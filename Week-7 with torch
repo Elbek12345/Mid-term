@@ -1,0 +1,31 @@
+
+import torchvision
+import torchvision.transforms as transforms 
+from torchvision.datasets import CIFAR10 
+from torch.utils.data import DataLoader
+import numpy as np
+import matplotlib.pyplot as plt
+ 
+
+transform= transforms.Compose([transforms. ToTensor()])
+trainset=CIFAR10(root="./pt_data",train=True, download=True, transform=transform)
+trainloader=DataLoader(trainset,batch_size=len(trainset),shuffle=False)
+data= next(iter (trainloader))
+
+
+
+train_images= data[0].numpy()
+train_images= np.moveaxis(train_images, 1, 3)
+train_labels = data[1].numpy()
+print('Category: ', train_labels[100])
+
+plt.figure(figsize=(1, 1)) 
+plt.imshow(train_images[100])
+plt.show()
+Downloading https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz to ./pt_data/cifar-10-python.tar.gz
+Failed download. Trying https -> http instead. Downloading http://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz to ./pt_data/cifar-10-python.tar.gz
+  0%|          | 0/170498071 [00:00<?, ?it/s]
+Extracting ./pt_data/cifar-10-python.tar.gz to ./pt_data
+Category:  8
+
+Using the pytorch API, we just imported CIFAR10 dataset, that includes many images. We tried to load a data from the dataset, we used matplotlib and data loader to draw an image plot.With numpy, the shape was inistalled. We got the data from the torch libery datasets.
