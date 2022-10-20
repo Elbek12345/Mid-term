@@ -1,0 +1,124 @@
+
+!pip install tensorflow # installing  tensorflow to the google collab. It will copy the files and install.
+Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/
+Requirement already satisfied: tensorflow in /usr/local/lib/python3.7/dist-packages (2.9.2)
+Requirement already satisfied: grpcio<2.0,>=1.24.3 in /usr/local/lib/python3.7/dist-packages (from tensorflow) (1.49.1)
+Requirement already satisfied: libclang>=13.0.0 in /usr/local/lib/python3.7/dist-packages (from tensorflow) (14.0.6)
+Requirement already satisfied: flatbuffers<2,>=1.12 in /usr/local/lib/python3.7/dist-packages (from tensorflow) (1.12)
+Requirement already satisfied: opt-einsum>=2.3.2 in /usr/local/lib/python3.7/dist-packages (from tensorflow) (3.3.0)
+Requirement already satisfied: six>=1.12.0 in /usr/local/lib/python3.7/dist-packages (from tensorflow) (1.15.0)
+Requirement already satisfied: typing-extensions>=3.6.6 in /usr/local/lib/python3.7/dist-packages (from tensorflow) (4.1.1)
+Requirement already satisfied: protobuf<3.20,>=3.9.2 in /usr/local/lib/python3.7/dist-packages (from tensorflow) (3.17.3)
+Requirement already satisfied: google-pasta>=0.1.1 in /usr/local/lib/python3.7/dist-packages (from tensorflow) (0.2.0)
+Requirement already satisfied: packaging in /usr/local/lib/python3.7/dist-packages (from tensorflow) (21.3)
+Requirement already satisfied: tensorflow-estimator<2.10.0,>=2.9.0rc0 in /usr/local/lib/python3.7/dist-packages (from tensorflow) (2.9.0)
+Requirement already satisfied: gast<=0.4.0,>=0.2.1 in /usr/local/lib/python3.7/dist-packages (from tensorflow) (0.4.0)
+Requirement already satisfied: keras-preprocessing>=1.1.1 in /usr/local/lib/python3.7/dist-packages (from tensorflow) (1.1.2)
+Requirement already satisfied: absl-py>=1.0.0 in /usr/local/lib/python3.7/dist-packages (from tensorflow) (1.2.0)
+Requirement already satisfied: h5py>=2.9.0 in /usr/local/lib/python3.7/dist-packages (from tensorflow) (3.1.0)
+Requirement already satisfied: setuptools in /usr/local/lib/python3.7/dist-packages (from tensorflow) (57.4.0)
+Requirement already satisfied: numpy>=1.20 in /usr/local/lib/python3.7/dist-packages (from tensorflow) (1.21.6)
+Requirement already satisfied: tensorflow-io-gcs-filesystem>=0.23.1 in /usr/local/lib/python3.7/dist-packages (from tensorflow) (0.27.0)
+Requirement already satisfied: termcolor>=1.1.0 in /usr/local/lib/python3.7/dist-packages (from tensorflow) (2.0.1)
+Requirement already satisfied: wrapt>=1.11.0 in /usr/local/lib/python3.7/dist-packages (from tensorflow) (1.14.1)
+Requirement already satisfied: astunparse>=1.6.0 in /usr/local/lib/python3.7/dist-packages (from tensorflow) (1.6.3)
+Requirement already satisfied: tensorboard<2.10,>=2.9 in /usr/local/lib/python3.7/dist-packages (from tensorflow) (2.9.1)
+Requirement already satisfied: keras<2.10.0,>=2.9.0rc0 in /usr/local/lib/python3.7/dist-packages (from tensorflow) (2.9.0)
+Requirement already satisfied: wheel<1.0,>=0.23.0 in /usr/local/lib/python3.7/dist-packages (from astunparse>=1.6.0->tensorflow) (0.37.1)
+Requirement already satisfied: cached-property in /usr/local/lib/python3.7/dist-packages (from h5py>=2.9.0->tensorflow) (1.5.2)
+Requirement already satisfied: markdown>=2.6.8 in /usr/local/lib/python3.7/dist-packages (from tensorboard<2.10,>=2.9->tensorflow) (3.4.1)
+Requirement already satisfied: tensorboard-data-server<0.7.0,>=0.6.0 in /usr/local/lib/python3.7/dist-packages (from tensorboard<2.10,>=2.9->tensorflow) (0.6.1)
+Requirement already satisfied: tensorboard-plugin-wit>=1.6.0 in /usr/local/lib/python3.7/dist-packages (from tensorboard<2.10,>=2.9->tensorflow) (1.8.1)
+Requirement already satisfied: google-auth-oauthlib<0.5,>=0.4.1 in /usr/local/lib/python3.7/dist-packages (from tensorboard<2.10,>=2.9->tensorflow) (0.4.6)
+Requirement already satisfied: google-auth<3,>=1.6.3 in /usr/local/lib/python3.7/dist-packages (from tensorboard<2.10,>=2.9->tensorflow) (1.35.0)
+Requirement already satisfied: requests<3,>=2.21.0 in /usr/local/lib/python3.7/dist-packages (from tensorboard<2.10,>=2.9->tensorflow) (2.23.0)
+Requirement already satisfied: werkzeug>=1.0.1 in /usr/local/lib/python3.7/dist-packages (from tensorboard<2.10,>=2.9->tensorflow) (1.0.1)
+Requirement already satisfied: cachetools<5.0,>=2.0.0 in /usr/local/lib/python3.7/dist-packages (from google-auth<3,>=1.6.3->tensorboard<2.10,>=2.9->tensorflow) (4.2.4)
+Requirement already satisfied: rsa<5,>=3.1.4 in /usr/local/lib/python3.7/dist-packages (from google-auth<3,>=1.6.3->tensorboard<2.10,>=2.9->tensorflow) (4.9)
+Requirement already satisfied: pyasn1-modules>=0.2.1 in /usr/local/lib/python3.7/dist-packages (from google-auth<3,>=1.6.3->tensorboard<2.10,>=2.9->tensorflow) (0.2.8)
+Requirement already satisfied: requests-oauthlib>=0.7.0 in /usr/local/lib/python3.7/dist-packages (from google-auth-oauthlib<0.5,>=0.4.1->tensorboard<2.10,>=2.9->tensorflow) (1.3.1)
+Requirement already satisfied: importlib-metadata>=4.4 in /usr/local/lib/python3.7/dist-packages (from markdown>=2.6.8->tensorboard<2.10,>=2.9->tensorflow) (5.0.0)
+Requirement already satisfied: zipp>=0.5 in /usr/local/lib/python3.7/dist-packages (from importlib-metadata>=4.4->markdown>=2.6.8->tensorboard<2.10,>=2.9->tensorflow) (3.9.0)
+Requirement already satisfied: pyasn1<0.5.0,>=0.4.6 in /usr/local/lib/python3.7/dist-packages (from pyasn1-modules>=0.2.1->google-auth<3,>=1.6.3->tensorboard<2.10,>=2.9->tensorflow) (0.4.8)
+Requirement already satisfied: idna<3,>=2.5 in /usr/local/lib/python3.7/dist-packages (from requests<3,>=2.21.0->tensorboard<2.10,>=2.9->tensorflow) (2.10)
+Requirement already satisfied: certifi>=2017.4.17 in /usr/local/lib/python3.7/dist-packages (from requests<3,>=2.21.0->tensorboard<2.10,>=2.9->tensorflow) (2022.9.24)
+Requirement already satisfied: chardet<4,>=3.0.2 in /usr/local/lib/python3.7/dist-packages (from requests<3,>=2.21.0->tensorboard<2.10,>=2.9->tensorflow) (3.0.4)
+Requirement already satisfied: urllib3!=1.25.0,!=1.25.1,<1.26,>=1.21.1 in /usr/local/lib/python3.7/dist-packages (from requests<3,>=2.21.0->tensorboard<2.10,>=2.9->tensorflow) (1.24.3)
+Requirement already satisfied: oauthlib>=3.0.0 in /usr/local/lib/python3.7/dist-packages (from requests-oauthlib>=0.7.0->google-auth-oauthlib<0.5,>=0.4.1->tensorboard<2.10,>=2.9->tensorflow) (3.2.1)
+Requirement already satisfied: pyparsing!=3.0.5,>=2.0.2 in /usr/local/lib/python3.7/dist-packages (from packaging->tensorflow) (3.0.9)
+import tensorflow as tf #importing installed tensorflow libery as tf
+import numpy as np #importing numpy libery as np
+with tf.compat.v1.Session() as sess: #opening a session
+  a=tf.Variable(0,name='input') #creating an input variable as 'a'
+  b=tf.constant(1)# creating a constant variable as 'b'
+
+  mid=tf.add(a,b) # adding a and b variables as labeling it as "mid".
+  final=tf.compat.v1.assign(a,mid) # assigning the 'a' and 'mid' to the session
+
+  var=tf.compat.v1.initialize_all_variables() #Installing variables given above
+  sess.run(var) # Runnning the session of 'var'
+  print(sess.run(a)) #Running the session of 'a'
+  for i in range(3): # repeating three times 
+    sess.run(final) # running the final session
+    print(sess.run(a)) #running session 'a'
+WARNING:tensorflow:From /usr/local/lib/python3.7/dist-packages/tensorflow/python/util/tf_should_use.py:243: initialize_all_variables (from tensorflow.python.ops.variables) is deprecated and will be removed after 2017-03-02.
+Instructions for updating:
+Use `tf.global_variables_initializer` instead.
+0
+1
+2
+3
+import tensorflow as tf #importing tensorflow libery as tf
+x=tf.constant(4.) #making 'x' as constant 4
+x #displaying 'x'
+<tf.Tensor: shape=(), dtype=float32, numpy=4.0>
+x=tf.constant(4,shape=(1,1),dtype=tf.float32) #making 'x' constant 4 and giving 1,1 shape which has a float32 data type
+x #displaying x
+<tf.Tensor: shape=(1, 1), dtype=float32, numpy=array([[4.]], dtype=float32)>
+x=tf.constant([[2,3,4],[4,5,6]]) # making a matrix with the given lists of numbers.
+x  # displaying x
+<tf.Tensor: shape=(2, 3), dtype=int32, numpy=
+array([[2, 3, 4],
+       [4, 5, 6]], dtype=int32)>
+tf.ones((3,3)) # making a matrix consists of 1 and has 3,3 size
+<tf.Tensor: shape=(3, 3), dtype=float32, numpy=
+array([[1., 1., 1.],
+       [1., 1., 1.],
+       [1., 1., 1.]], dtype=float32)>
+tf.zeros((4,4)) # making a matrix consists of 0 and has 4,4 size
+<tf.Tensor: shape=(4, 4), dtype=float32, numpy=
+array([[0., 0., 0., 0.],
+       [0., 0., 0., 0.],
+       [0., 0., 0., 0.],
+       [0., 0., 0., 0.]], dtype=float32)>
+tf.eye(3) # mking a diagnal of 1 in a 3,3 size matrix
+<tf.Tensor: shape=(3, 3), dtype=float32, numpy=
+array([[1., 0., 0.],
+       [0., 1., 0.],
+       [0., 0., 1.]], dtype=float32)>
+tf.eye(7)# mking a diagnal of 1 in a 3,3 size matrix
+<tf.Tensor: shape=(7, 7), dtype=float32, numpy=
+array([[1., 0., 0., 0., 0., 0., 0.],
+       [0., 1., 0., 0., 0., 0., 0.],
+       [0., 0., 1., 0., 0., 0., 0.],
+       [0., 0., 0., 1., 0., 0., 0.],
+       [0., 0., 0., 0., 1., 0., 0.],
+       [0., 0., 0., 0., 0., 1., 0.],
+       [0., 0., 0., 0., 0., 0., 1.]], dtype=float32)>
+tf.range(9) #making a list of numbers in a range 9
+<tf.Tensor: shape=(9,), dtype=int32, numpy=array([0, 1, 2, 3, 4, 5, 6, 7, 8], dtype=int32)>
+x=tf.constant([1,2,3]) #enabling x as a list of numbers
+y=tf.constant([9,8,7]) #enabling y as a list of numbers
+x+y #adding
+tf.add(x,y) #adding with tf
+<tf.Tensor: shape=(3,), dtype=int32, numpy=array([10, 10, 10], dtype=int32)>
+tf.subtract(x,y) #substracting with tf
+x-y#simple substracting
+<tf.Tensor: shape=(3,), dtype=int32, numpy=array([-8, -6, -4], dtype=int32)>
+tf.divide(x,y)#dividing with tf
+x/y #dividing simply
+<tf.Tensor: shape=(3,), dtype=float64, numpy=array([0.11111111, 0.25      , 0.42857143])>
+tf.multiply(x,y) #Multiplying with tf
+<tf.Tensor: shape=(3,), dtype=int32, numpy=array([ 9, 16, 21], dtype=int32)>
+x**5 #the power of x
+<tf.Tensor: shape=(3,), dtype=int32, numpy=array([  1,  32, 243], dtype=int32)>
