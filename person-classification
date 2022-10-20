@@ -1,0 +1,361 @@
+
+!pip install split_folders
+Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/
+Collecting split_folders
+  Downloading split_folders-0.5.1-py3-none-any.whl (8.4 kB)
+Installing collected packages: split-folders
+Successfully installed split-folders-0.5.1
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import tensorflow as tf
+from keras.layers import Input, Dense, Flatten,Conv2D, MaxPool2D
+from keras.models import Model
+from keras.preprocessing import image
+import cv2
+from keras.preprocessing.image import ImageDataGenerator,load_img
+from keras.models  import Sequential
+import splitfolders
+from zipfile import ZipFile
+from google.colab import files
+from IPython.display import Image
+import os.path
+I imported the needed liberies of Keras API. They are some layers, functions to split folders that i can split the data for train and testing. To open zip fil, zipfile.
+
+file_name="Sinfdoshlarim.zip"
+with ZipFile(file_name,'r') as zip:
+  zip.extractall()
+  print('Done')
+Done
+Here, I just unzipped the data with the help of ZipFle function. And once it is done, it prints out "Done".
+
+input="/content/Sinfdoshlarim"
+output="/content/friends_divided"
+splitfolders.ratio(input,output,seed=42,ratio=(.8,.2,))
+Copying files: 78 files [00:00, 1885.00 files/s]
+Here, I gave links for getting the data and exporting the splited data. It takes images from input link and split it with 0.2 ratio. Then gives to the output link location.
+
+train_path='/content/sinfdoshlarim_bolingan/train'
+valid_path='/content/sinfdoshlarim_bolingan/val'
+img_size=[200,200]
+Here I gave links for the train and validation data. I wanted to make the image size as 200x200. So here it is.
+
+mallavoy=image.load_img('/content/Sinfdoshlarim/Abdusalom/19700102_061452.jpg',target_size=img_size)
+plt.imshow(mallavoy)
+plt.show()
+
+I used image libery and load_img function to load a sample image of one class.
+
+jamjid=image.load_img('/content/Sinfdoshlarim/Jamshid/20190518_232838.jpg',target_size=img_size)
+plt.imshow(jamjid)
+plt.show()
+
+I did the same thing as above.
+
+kamina=image.load_img('/content/Sinfdoshlarim/Men/photo_2020-07-27_05-42-14.jpg',target_size=img_size)
+plt.imshow(kamina)
+plt.show()
+
+Here the third class image who is me.
+
+train=ImageDataGenerator(rotation_range=20,
+                         width_shift_range=0.10,
+                         height_shift_range=0.10,
+                         rescale=1/255,
+                         shear_range=0.1,
+                         zoom_range=0.1,
+                         horizontal_flip=True,)
+                         
+validation=ImageDataGenerator(rotation_range=20,
+                         width_shift_range=0.10,
+                         height_shift_range=0.10,
+                         rescale=1/255,
+                         shear_range=0.1,
+                         zoom_range=0.1,
+                         horizontal_flip=True,
+                         fill_mode='nearest')
+Here what I did is called Image Augmantation. Images can be in differect shape and condition, some might be scaled, some might be shifted to the left or right. So the model might get confused once it gets new image. To solve the problem, we will shift scale or do some edtings to the images and generate new images to train with the batchh size. So it only works with cnn, not ANN or any other staff. I scaled the images 255 times by 1/255 to make it easy for the model to work with images. And rotation so on ...
+
+train_data=train.flow_from_directory(train_path,
+                                     target_size=img_size,
+                                     batch_size=8,
+                                     class_mode='categorical')
+
+validation_data=validation.flow_from_directory(train_path,
+                                     target_size=img_size,
+                                     batch_size=4,
+                                     class_mode='categorical')
+Found 61 images belonging to 3 classes.
+Found 61 images belonging to 3 classes.
+"flow_from_directory" this function takes images from the given links and give them certain classes according to the files they are in. So target size or classes can be given here. Like categorical if there are more than 2 classes. And the batch size is for generating new images. Target_size is just the size of images derived from the link
+
+train_data.class_indices
+{'Abdusalom': 0, 'Jamshid': 1, 'Men': 2}
+To see image classes and their names, just wrote that function.
+
+validation_data.classes
+array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2], dtype=int32)
+looking at the indices of the classes
+
+model=Sequential([Conv2D(16,(3,3),activation='relu',input_shape=(200,200,3)),
+                  MaxPool2D(2,2),
+
+                  Conv2D(32,(3,3),activation='relu',input_shape=(200,200,3)),
+                  MaxPool2D(2,2),
+
+                  Conv2D(64,(3,3),activation='relu',input_shape=(200,200,3)),
+                  MaxPool2D(2,2),
+
+                  Flatten(),
+                  Dense(16,activation='relu'),
+                  Dense(32,activation='relu'),
+                  Dense(64,activation='relu'),
+                  
+                  Dense(3,activation='softmax')
+                  ])
+Wow, here it is I made my model here using Sequential API. I used Convolutional layer with the karnel size3 by 3, activation function is "Relu", The shape model accepts is input shape, then there is MaxPooling with 2 by 2. I know what they do deeply, but they are all deep math. Activation for example is a graph of out predictions. convolution is multiplication of mask to the image. Pooling is decreasing the image for the model. So I repeated it 3 times. Then I flattened the images into a single list. So then I added 3 Dense layers with 16,32,64 neurons. At the end the output layer got 3 neurons as i have 3 classes only. Here the output comes from the last dense layer with the activation "Softmax" as we have more classes.
+
+model.compile(loss='categorical_crossentropy',
+              optimizer='adam',
+              metrics=['accuracy'])
+Compiling the model, we will enable the loss type according to the number of classes. In order to decrease the loss, we need optimizers, so I chose"adam" as it is the best for any model. Metrics is the evaluating type, so just accuracy.
+
+r=model.fit(train_data,validation_data=validation_data,epochs=100)
+Epoch 1/100
+11/11 [==============================] - 6s 539ms/step - loss: 0.8989 - accuracy: 0.6393 - val_loss: 0.7562 - val_accuracy: 0.6721
+Epoch 2/100
+11/11 [==============================] - 6s 534ms/step - loss: 0.8495 - accuracy: 0.6557 - val_loss: 0.7309 - val_accuracy: 0.6721
+Epoch 3/100
+11/11 [==============================] - 6s 532ms/step - loss: 0.8001 - accuracy: 0.6557 - val_loss: 0.7542 - val_accuracy: 0.6066
+Epoch 4/100
+11/11 [==============================] - 6s 549ms/step - loss: 0.7488 - accuracy: 0.7049 - val_loss: 0.7095 - val_accuracy: 0.7377
+Epoch 5/100
+11/11 [==============================] - 9s 929ms/step - loss: 0.7155 - accuracy: 0.7377 - val_loss: 0.7009 - val_accuracy: 0.7541
+Epoch 6/100
+11/11 [==============================] - 7s 649ms/step - loss: 0.7584 - accuracy: 0.6885 - val_loss: 0.7761 - val_accuracy: 0.6885
+Epoch 7/100
+11/11 [==============================] - 7s 661ms/step - loss: 0.7649 - accuracy: 0.7213 - val_loss: 0.7206 - val_accuracy: 0.7049
+Epoch 8/100
+11/11 [==============================] - 6s 524ms/step - loss: 0.7373 - accuracy: 0.6721 - val_loss: 0.7039 - val_accuracy: 0.6393
+Epoch 9/100
+11/11 [==============================] - 6s 571ms/step - loss: 0.7729 - accuracy: 0.6066 - val_loss: 0.7337 - val_accuracy: 0.6721
+Epoch 10/100
+11/11 [==============================] - 6s 540ms/step - loss: 0.7480 - accuracy: 0.6557 - val_loss: 0.7451 - val_accuracy: 0.6721
+Epoch 11/100
+11/11 [==============================] - 6s 522ms/step - loss: 0.7663 - accuracy: 0.6230 - val_loss: 0.6903 - val_accuracy: 0.7049
+Epoch 12/100
+11/11 [==============================] - 6s 582ms/step - loss: 0.6789 - accuracy: 0.7049 - val_loss: 0.6727 - val_accuracy: 0.8033
+Epoch 13/100
+11/11 [==============================] - 6s 542ms/step - loss: 0.7112 - accuracy: 0.7049 - val_loss: 0.6596 - val_accuracy: 0.7049
+Epoch 14/100
+11/11 [==============================] - 6s 531ms/step - loss: 0.7574 - accuracy: 0.6721 - val_loss: 0.6984 - val_accuracy: 0.6393
+Epoch 15/100
+11/11 [==============================] - 6s 594ms/step - loss: 0.7417 - accuracy: 0.7049 - val_loss: 0.7629 - val_accuracy: 0.6557
+Epoch 16/100
+11/11 [==============================] - 6s 563ms/step - loss: 0.7681 - accuracy: 0.6721 - val_loss: 0.7372 - val_accuracy: 0.6885
+Epoch 17/100
+11/11 [==============================] - 8s 709ms/step - loss: 0.7250 - accuracy: 0.6721 - val_loss: 0.7191 - val_accuracy: 0.6721
+Epoch 18/100
+11/11 [==============================] - 6s 534ms/step - loss: 0.6672 - accuracy: 0.7049 - val_loss: 0.6786 - val_accuracy: 0.6885
+Epoch 19/100
+11/11 [==============================] - 8s 746ms/step - loss: 0.7125 - accuracy: 0.6393 - val_loss: 0.6720 - val_accuracy: 0.7213
+Epoch 20/100
+11/11 [==============================] - 6s 562ms/step - loss: 0.6386 - accuracy: 0.7541 - val_loss: 0.5848 - val_accuracy: 0.7705
+Epoch 21/100
+11/11 [==============================] - 6s 526ms/step - loss: 0.6435 - accuracy: 0.7377 - val_loss: 0.6288 - val_accuracy: 0.7377
+Epoch 22/100
+11/11 [==============================] - 6s 530ms/step - loss: 0.6075 - accuracy: 0.7705 - val_loss: 0.6286 - val_accuracy: 0.7541
+Epoch 23/100
+11/11 [==============================] - 6s 522ms/step - loss: 0.6667 - accuracy: 0.7705 - val_loss: 0.7736 - val_accuracy: 0.6721
+Epoch 24/100
+11/11 [==============================] - 6s 539ms/step - loss: 0.6258 - accuracy: 0.7705 - val_loss: 0.5728 - val_accuracy: 0.8361
+Epoch 25/100
+11/11 [==============================] - 6s 522ms/step - loss: 0.6579 - accuracy: 0.7377 - val_loss: 0.5697 - val_accuracy: 0.8033
+Epoch 26/100
+11/11 [==============================] - 6s 523ms/step - loss: 0.5824 - accuracy: 0.8033 - val_loss: 0.5487 - val_accuracy: 0.8197
+Epoch 27/100
+11/11 [==============================] - 6s 541ms/step - loss: 0.6136 - accuracy: 0.7049 - val_loss: 0.5901 - val_accuracy: 0.7541
+Epoch 28/100
+11/11 [==============================] - 6s 531ms/step - loss: 0.5724 - accuracy: 0.7705 - val_loss: 0.5487 - val_accuracy: 0.8197
+Epoch 29/100
+11/11 [==============================] - 6s 535ms/step - loss: 0.5475 - accuracy: 0.7869 - val_loss: 0.5233 - val_accuracy: 0.8197
+Epoch 30/100
+11/11 [==============================] - 6s 543ms/step - loss: 0.5518 - accuracy: 0.8033 - val_loss: 0.5134 - val_accuracy: 0.8033
+Epoch 31/100
+11/11 [==============================] - 6s 536ms/step - loss: 0.5468 - accuracy: 0.7869 - val_loss: 0.5615 - val_accuracy: 0.8033
+Epoch 32/100
+11/11 [==============================] - 6s 536ms/step - loss: 0.5352 - accuracy: 0.8361 - val_loss: 0.6465 - val_accuracy: 0.7377
+Epoch 33/100
+11/11 [==============================] - 6s 522ms/step - loss: 0.6140 - accuracy: 0.7869 - val_loss: 0.5844 - val_accuracy: 0.7541
+Epoch 34/100
+11/11 [==============================] - 6s 516ms/step - loss: 0.6059 - accuracy: 0.7541 - val_loss: 0.5470 - val_accuracy: 0.7705
+Epoch 35/100
+11/11 [==============================] - 6s 538ms/step - loss: 0.5342 - accuracy: 0.8197 - val_loss: 0.5409 - val_accuracy: 0.7705
+Epoch 36/100
+11/11 [==============================] - 6s 524ms/step - loss: 0.5161 - accuracy: 0.8033 - val_loss: 0.5882 - val_accuracy: 0.7541
+Epoch 37/100
+11/11 [==============================] - 6s 542ms/step - loss: 0.4945 - accuracy: 0.8197 - val_loss: 0.5011 - val_accuracy: 0.8033
+Epoch 38/100
+11/11 [==============================] - 6s 535ms/step - loss: 0.4975 - accuracy: 0.8197 - val_loss: 0.4745 - val_accuracy: 0.8525
+Epoch 39/100
+11/11 [==============================] - 6s 523ms/step - loss: 0.4617 - accuracy: 0.8361 - val_loss: 0.6468 - val_accuracy: 0.7377
+Epoch 40/100
+11/11 [==============================] - 6s 530ms/step - loss: 0.6976 - accuracy: 0.6885 - val_loss: 0.6012 - val_accuracy: 0.7377
+Epoch 41/100
+11/11 [==============================] - 6s 543ms/step - loss: 0.6608 - accuracy: 0.7049 - val_loss: 0.6144 - val_accuracy: 0.7705
+Epoch 42/100
+11/11 [==============================] - 6s 530ms/step - loss: 0.7348 - accuracy: 0.7213 - val_loss: 0.6139 - val_accuracy: 0.7869
+Epoch 43/100
+11/11 [==============================] - 6s 629ms/step - loss: 0.6027 - accuracy: 0.7869 - val_loss: 0.5959 - val_accuracy: 0.7869
+Epoch 44/100
+11/11 [==============================] - 6s 534ms/step - loss: 0.5914 - accuracy: 0.7541 - val_loss: 0.6180 - val_accuracy: 0.8033
+Epoch 45/100
+11/11 [==============================] - 6s 522ms/step - loss: 0.5630 - accuracy: 0.7541 - val_loss: 0.5112 - val_accuracy: 0.8033
+Epoch 46/100
+11/11 [==============================] - 6s 540ms/step - loss: 0.6007 - accuracy: 0.7377 - val_loss: 0.6486 - val_accuracy: 0.7049
+Epoch 47/100
+11/11 [==============================] - 6s 534ms/step - loss: 0.7242 - accuracy: 0.7049 - val_loss: 0.7075 - val_accuracy: 0.7049
+Epoch 48/100
+11/11 [==============================] - 6s 537ms/step - loss: 0.6832 - accuracy: 0.7049 - val_loss: 0.5607 - val_accuracy: 0.7705
+Epoch 49/100
+11/11 [==============================] - 6s 538ms/step - loss: 0.5969 - accuracy: 0.7541 - val_loss: 0.5890 - val_accuracy: 0.7705
+Epoch 50/100
+11/11 [==============================] - 6s 535ms/step - loss: 0.6021 - accuracy: 0.7377 - val_loss: 0.5593 - val_accuracy: 0.7541
+Epoch 51/100
+11/11 [==============================] - 6s 536ms/step - loss: 0.6308 - accuracy: 0.7705 - val_loss: 0.6443 - val_accuracy: 0.6885
+Epoch 52/100
+11/11 [==============================] - 6s 535ms/step - loss: 0.6245 - accuracy: 0.7705 - val_loss: 0.6594 - val_accuracy: 0.7541
+Epoch 53/100
+11/11 [==============================] - 6s 528ms/step - loss: 0.5379 - accuracy: 0.7869 - val_loss: 0.6283 - val_accuracy: 0.7377
+Epoch 54/100
+11/11 [==============================] - 6s 542ms/step - loss: 0.5959 - accuracy: 0.7541 - val_loss: 0.5315 - val_accuracy: 0.7869
+Epoch 55/100
+11/11 [==============================] - 6s 521ms/step - loss: 0.6817 - accuracy: 0.7213 - val_loss: 0.6046 - val_accuracy: 0.7541
+Epoch 56/100
+11/11 [==============================] - 7s 599ms/step - loss: 0.6525 - accuracy: 0.7377 - val_loss: 0.6869 - val_accuracy: 0.6885
+Epoch 57/100
+11/11 [==============================] - 6s 532ms/step - loss: 0.5690 - accuracy: 0.7541 - val_loss: 0.5026 - val_accuracy: 0.8033
+Epoch 58/100
+11/11 [==============================] - 6s 530ms/step - loss: 0.6349 - accuracy: 0.7705 - val_loss: 0.5549 - val_accuracy: 0.8197
+Epoch 59/100
+11/11 [==============================] - 6s 530ms/step - loss: 0.5250 - accuracy: 0.8197 - val_loss: 0.5561 - val_accuracy: 0.8033
+Epoch 60/100
+11/11 [==============================] - 6s 540ms/step - loss: 0.4913 - accuracy: 0.8197 - val_loss: 0.4685 - val_accuracy: 0.8525
+Epoch 61/100
+11/11 [==============================] - 6s 569ms/step - loss: 0.4855 - accuracy: 0.8033 - val_loss: 0.4431 - val_accuracy: 0.8033
+Epoch 62/100
+11/11 [==============================] - 6s 532ms/step - loss: 0.4328 - accuracy: 0.8525 - val_loss: 0.4446 - val_accuracy: 0.8197
+Epoch 63/100
+11/11 [==============================] - 6s 546ms/step - loss: 0.4467 - accuracy: 0.8197 - val_loss: 0.5810 - val_accuracy: 0.7869
+Epoch 64/100
+11/11 [==============================] - 6s 539ms/step - loss: 0.5498 - accuracy: 0.7869 - val_loss: 0.4729 - val_accuracy: 0.8525
+Epoch 65/100
+11/11 [==============================] - 6s 537ms/step - loss: 0.5388 - accuracy: 0.8033 - val_loss: 0.5134 - val_accuracy: 0.7541
+Epoch 66/100
+11/11 [==============================] - 6s 535ms/step - loss: 0.5974 - accuracy: 0.7869 - val_loss: 0.4996 - val_accuracy: 0.8197
+Epoch 67/100
+11/11 [==============================] - 6s 536ms/step - loss: 0.4607 - accuracy: 0.8525 - val_loss: 0.4410 - val_accuracy: 0.8525
+Epoch 68/100
+11/11 [==============================] - 6s 538ms/step - loss: 0.5185 - accuracy: 0.8197 - val_loss: 0.5509 - val_accuracy: 0.7869
+Epoch 69/100
+11/11 [==============================] - 6s 544ms/step - loss: 0.5098 - accuracy: 0.7869 - val_loss: 0.4981 - val_accuracy: 0.8197
+Epoch 70/100
+11/11 [==============================] - 6s 530ms/step - loss: 0.6284 - accuracy: 0.7377 - val_loss: 0.5383 - val_accuracy: 0.7869
+Epoch 71/100
+11/11 [==============================] - 6s 534ms/step - loss: 0.5112 - accuracy: 0.8197 - val_loss: 0.4500 - val_accuracy: 0.8361
+Epoch 72/100
+11/11 [==============================] - 6s 529ms/step - loss: 0.4262 - accuracy: 0.8361 - val_loss: 0.4816 - val_accuracy: 0.7869
+Epoch 73/100
+11/11 [==============================] - 6s 519ms/step - loss: 0.4575 - accuracy: 0.8689 - val_loss: 0.4449 - val_accuracy: 0.8361
+Epoch 74/100
+11/11 [==============================] - 6s 580ms/step - loss: 0.4596 - accuracy: 0.8033 - val_loss: 0.4510 - val_accuracy: 0.8525
+Epoch 75/100
+11/11 [==============================] - 6s 539ms/step - loss: 0.5744 - accuracy: 0.7869 - val_loss: 0.5195 - val_accuracy: 0.7869
+Epoch 76/100
+11/11 [==============================] - 6s 542ms/step - loss: 0.5342 - accuracy: 0.7869 - val_loss: 0.5565 - val_accuracy: 0.8033
+Epoch 77/100
+11/11 [==============================] - 6s 534ms/step - loss: 0.5694 - accuracy: 0.7541 - val_loss: 0.5302 - val_accuracy: 0.7869
+Epoch 78/100
+11/11 [==============================] - 6s 524ms/step - loss: 0.6311 - accuracy: 0.7377 - val_loss: 0.5433 - val_accuracy: 0.7869
+Epoch 79/100
+11/11 [==============================] - 6s 517ms/step - loss: 0.4987 - accuracy: 0.8033 - val_loss: 0.5138 - val_accuracy: 0.8033
+Epoch 80/100
+11/11 [==============================] - 7s 633ms/step - loss: 0.5720 - accuracy: 0.8033 - val_loss: 0.5003 - val_accuracy: 0.8033
+Epoch 81/100
+11/11 [==============================] - 6s 533ms/step - loss: 0.5257 - accuracy: 0.7705 - val_loss: 0.4146 - val_accuracy: 0.8361
+Epoch 82/100
+11/11 [==============================] - 6s 536ms/step - loss: 0.5450 - accuracy: 0.8033 - val_loss: 0.6004 - val_accuracy: 0.7213
+Epoch 83/100
+11/11 [==============================] - 6s 537ms/step - loss: 0.6229 - accuracy: 0.7705 - val_loss: 0.5244 - val_accuracy: 0.8033
+Epoch 84/100
+11/11 [==============================] - 6s 542ms/step - loss: 0.5022 - accuracy: 0.8033 - val_loss: 0.6280 - val_accuracy: 0.7705
+Epoch 85/100
+11/11 [==============================] - 6s 519ms/step - loss: 0.6342 - accuracy: 0.7705 - val_loss: 0.5715 - val_accuracy: 0.8197
+Epoch 86/100
+11/11 [==============================] - 6s 537ms/step - loss: 0.5763 - accuracy: 0.7705 - val_loss: 0.5508 - val_accuracy: 0.7705
+Epoch 87/100
+11/11 [==============================] - 6s 539ms/step - loss: 0.4742 - accuracy: 0.8033 - val_loss: 0.4204 - val_accuracy: 0.8689
+Epoch 88/100
+11/11 [==============================] - 6s 523ms/step - loss: 0.4608 - accuracy: 0.8197 - val_loss: 0.4187 - val_accuracy: 0.8689
+Epoch 89/100
+11/11 [==============================] - 6s 534ms/step - loss: 0.4168 - accuracy: 0.8197 - val_loss: 0.3951 - val_accuracy: 0.8525
+Epoch 90/100
+11/11 [==============================] - 6s 508ms/step - loss: 0.4430 - accuracy: 0.8197 - val_loss: 0.4107 - val_accuracy: 0.8197
+Epoch 91/100
+11/11 [==============================] - 6s 535ms/step - loss: 0.5070 - accuracy: 0.8197 - val_loss: 0.4392 - val_accuracy: 0.8361
+Epoch 92/100
+11/11 [==============================] - 6s 534ms/step - loss: 0.4470 - accuracy: 0.8197 - val_loss: 0.4015 - val_accuracy: 0.8689
+Epoch 93/100
+11/11 [==============================] - 6s 535ms/step - loss: 0.3920 - accuracy: 0.8689 - val_loss: 0.5314 - val_accuracy: 0.8033
+Epoch 94/100
+11/11 [==============================] - 7s 643ms/step - loss: 0.4314 - accuracy: 0.8525 - val_loss: 0.3815 - val_accuracy: 0.8852
+Epoch 95/100
+11/11 [==============================] - 6s 534ms/step - loss: 0.3865 - accuracy: 0.8525 - val_loss: 0.3531 - val_accuracy: 0.8852
+Epoch 96/100
+11/11 [==============================] - 6s 529ms/step - loss: 0.3900 - accuracy: 0.8689 - val_loss: 0.3855 - val_accuracy: 0.8689
+Epoch 97/100
+11/11 [==============================] - 6s 534ms/step - loss: 0.4280 - accuracy: 0.8197 - val_loss: 0.5449 - val_accuracy: 0.7705
+Epoch 98/100
+11/11 [==============================] - 6s 524ms/step - loss: 0.4755 - accuracy: 0.8033 - val_loss: 0.4516 - val_accuracy: 0.8361
+Epoch 99/100
+11/11 [==============================] - 6s 540ms/step - loss: 0.4047 - accuracy: 0.8689 - val_loss: 0.4401 - val_accuracy: 0.8525
+Epoch 100/100
+11/11 [==============================] - 6s 567ms/step - loss: 0.4437 - accuracy: 0.8361 - val_loss: 0.4326 - val_accuracy: 0.8033
+we are fitting the model with 100 epochs that our model learns the images 100 times. The reult was good, 83 for train and 80 for testing. So no overfitting or underfitting. It is fitting well.
+
+if os.path.isfile('/content/Sinfdoshlarim/sinfdoshlarim.h5') is False:
+  model.save('/content/Sinfdoshlarim/sinfdoshlarim.h5')
+It is saving the trained model, so i am saving it as h5 file with its weights.
+
+plt.plot(r.history['loss'],label='loss')
+plt.plot(r.history['val_loss'],label='val_loss')
+plt.show()
+
+A code for the visulazation of train and validation losss.
+
+plt.plot(r.history['accuracy'],label='accuracy')
+plt.plot(r.history['val_accuracy'],label='val_accuracy')
+plt.show()
+
+A code for the visulazation of train and validation accuracy. As you can see by epoch, it increases as the loss decreases.
+
+image_path='/content/mixed/19700102_110010.jpg'
+img_plot=image.load_img(image_path,target_size=(200,200))
+plt.imshow(img_plot)
+plt.show()
+
+X=image.img_to_array(img_plot)
+X=np.expand_dims(X,axis=0)
+test=model.predict(X)
+if np.argmax(test)==1:
+  print('Jamshid.')
+elif np.argmax(test)==0:
+  print("Abdusalom")
+elif np.argmax(test)==0:
+  print("Muhammadyusuf")
+
+Bu Elbek
+i did all of them independently. 
+
